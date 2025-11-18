@@ -70,7 +70,13 @@ namespace ancestor_mod_distribution
     private void run_btn_Click(object sender, RoutedEventArgs e)
     {
       Dictionary<string, int> module_count_per_descendant = new Dictionary<string, int>();
-      int module_count = int.Parse(module_count_tb.Text);
+      int module_count = 0;
+
+      if(!int.TryParse(module_count_tb.Text, out module_count))
+      {
+        MessageBox.Show("Failed to parse value (too big ?)");
+        return;
+      }
 
       foreach (string descendant in descendants)
       {
